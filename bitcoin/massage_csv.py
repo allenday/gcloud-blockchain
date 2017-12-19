@@ -34,4 +34,5 @@ for line in sys.stdin:
     oaddr = map(lambda i: '"'+hash_to_address('00'.decode('hex'), i.decode('hex'))+'"', ohash)
     fields[10] = '['+(','.join(oaddr))+']'
 
-    print "\t".join(fields)
+    print '{"block_version":'+fields[0]+',"block_time":"'+fields[1]+',"block_height":'+fields[2]+',"block_hash":"'+fields[3]+'"'+',"tx_version":'+fields[4]+',"tx_hash":"'+fields[5]+'"'+',"i_pos":'+fields[6]+',"i_pubkey_hash":'+fields[7]+',"i_value":'+fields[8]+',"o_pos":'+fields[9]+',"o_pubkey_hash":'+fields[10]+',"o_value":'+fields[11]+'}'
+
