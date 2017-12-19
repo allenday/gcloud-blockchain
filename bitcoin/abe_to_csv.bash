@@ -18,9 +18,9 @@ SELECT
 FROM
 	(SELECT
 		id.tx_id,
-		GROUP_CONCAT(DISTINCT id.txin_pos ORDER BY txin_pos) AS i_pos,
-		GROUP_CONCAT(DISTINCT HEX(id.pubkey_hash) ORDER BY txin_pos) AS i_pubkey_hash,
-		GROUP_CONCAT(DISTINCT id.txin_value ORDER BY txin_pos) AS i_value
+		GROUP_CONCAT(id.txin_pos ORDER BY txin_pos) AS i_pos,
+		GROUP_CONCAT(HEX(id.pubkey_hash) ORDER BY txin_pos) AS i_pubkey_hash,
+		GROUP_CONCAT(id.txin_value ORDER BY txin_pos) AS i_value
 	FROM
 		block_tx AS bt,
 		txin_detail AS id
@@ -34,8 +34,8 @@ FROM
 	) AS id,
 	(SELECT
 		od.tx_id,
-		GROUP_CONCAT(DISTINCT od.txout_pos ORDER BY txout_pos) AS o_pos,
-		GROUP_CONCAT(DISTINCT HEX(od.pubkey_hash) ORDER BY txout_pos) AS o_pubkey_hash,
+		GROUP_CONCAT(od.txout_pos ORDER BY txout_pos) AS o_pos,
+		GROUP_CONCAT(HEX(od.pubkey_hash) ORDER BY txout_pos) AS o_pubkey_hash,
 		GROUP_CONCAT(od.txout_value ORDER BY txout_pos) AS o_value
 	FROM
 		block_tx AS bt,
